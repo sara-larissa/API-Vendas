@@ -27,5 +27,77 @@ namespace API.Controllers
             _repository.Cadastrar(cliente);
             return Ok();
         }
+
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(int id)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if (cliente is not null) //FUNÇÃO PARA NÃO MOSTRAR A SENHA NA PESQUISA;
+            {   
+                var clienteDTO = new ObterClienteDTO(cliente);
+                return Ok(clienteDTO);
+            }
+            else
+            {
+                return NotFound(new { Mensagem = "Cliente não encontrado"}) ;    
+            }   
+
+        }
+
+        [HttpGet("ObterPorNome/{nome}")]
+        public IActionResult ObterPorNome(string nome)
+        {
+            var clientes = _repository.ObterPorNome(nome);
+            return Ok(clientes);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, AtualizarClienteDTO dto)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if(cliente is not null)
+            {
+                cliente.MapearAtualizarCliente(dto);
+                _repository.AtualizarCliente(cliente);
+                return Ok(cliente);
+            } 
+            else
+            {
+                return NotFound(new { Mensagem = "Cliente não encontrado"});
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if(cliente is not null)
+            {
+                _repository.DeletarCliente(cliente);
+                return NoContent(); //NoContent resposta vazia para a API;
+            }
+            else
+            {
+                 return NotFound(new { Mensagem = "Cliente não encontrado"});
+            }
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult AtualizarSenha(int id, AtualizarSenhaClienteDTO dto)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if (cliente is not null)
+            {
+                _repository.AtualizarSenha(cliente, dto);
+                return Ok(cliente);
+
+            } else {
+                return NotFound(new { Mensagem = "Cliente não encontrado"});
+            }
+        }
     }
 }
