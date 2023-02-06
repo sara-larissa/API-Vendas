@@ -15,6 +15,9 @@ internal class Program
         builder.Services.AddScoped<VendedorRepository>();
         builder.Services.AddScoped<ClienteRepository>();
         builder.Services.AddScoped<PedidoRepository>();
+        builder.Services.AddScoped<ItemPedidoRepository>();
+        builder.Services.AddScoped<ServicoRepository>();
+        
 
 
         builder.Services.AddControllers();

@@ -17,9 +17,9 @@ namespace API.Context  //o que é um Conntext? Uma classe que acessa o banco de 
               //Tudo que for tabela colocar como DbSet
 
         public DbSet<Cliente> Clientes {get; set; }
-        public DbSet<ItemPedidos> ItensPedido {get; set; }
+        public DbSet<ItemPedido> ItensPedido {get; set; }
         public DbSet<Pedido> Pedidos {get; set; }
-        public DbSet<Servico> Serviços {get; set; }
+        public DbSet<Servico> Servicos {get; set; }
         public DbSet<Vendedor> Vendedores {get; set; }
 
     }
