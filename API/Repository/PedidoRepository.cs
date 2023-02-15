@@ -32,11 +32,11 @@ namespace API.Repository
             return pedido;
         }
 
-        public List<Pedido> Listar ()
-        {
-            var pedido = _context.Pedidos.ToList();
-            return pedido;
-        }
+        // public List<Pedido> Listar ()
+        // {
+        //     var pedido = _context.Pedidos.ToList();
+        //     return pedido;
+        // }
 
         public List<ObterPedidoDTO> ObterVendedorPedido(int id)
         {
@@ -66,6 +66,11 @@ namespace API.Repository
         {
             _context.Pedidos.Remove(pedido);
             _context.SaveChanges();
+        }
+
+        public List<Pedido> Listar()
+        {
+            return _context.Pedidos.ToList();
         }
 
     }

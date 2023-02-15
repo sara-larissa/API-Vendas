@@ -24,11 +24,11 @@ namespace API.Repository
             _context.SaveChanges();
         }
 
-        public List<ItemPedido> Listar()
-        {
-            var item = _context.ItensPedido.ToList();
-            return item;
-        }
+        // public List<ItemPedido> Listar()
+        // {
+        //     var item = _context.ItensPedido.ToList();
+        //     return item;
+        // }
 
         public ItemPedido ObterPorId(int id)
         {
@@ -51,6 +51,9 @@ namespace API.Repository
             _context.ItensPedido.Remove(item);
             _context.SaveChanges();
         }
-
+          public List<ItemPedido> Listar()
+        {
+            return _context.ItensPedido.ToList();
+        }
     }
 }

@@ -28,20 +28,20 @@ namespace API.Controllers
             return Ok(ItemPedido);
         }
 
-        [HttpGet]
-        public IActionResult Listar()
-        {
-            var item = _repository.Listar();
+        // [HttpGet]
+        // public IActionResult Listar()
+        // {
+        //     var item = _repository.Listar();
 
-            if(item is not null)
-            {
-                return Ok(item);
-            }
-            else
-            {
-                return NotFound(new { Mensagem = "Não há itens"});
-            }
-        }
+        //     if(item is not null)
+        //     {
+        //         return Ok(item);
+        //     }
+        //     else
+        //     {
+        //         return NotFound(new { Mensagem = "Não há itens"});
+        //     }
+        // }
 
         [HttpGet("{id}")]
         public IActionResult ConsultarPorId(int id)
@@ -93,5 +93,14 @@ namespace API.Controllers
             }
         
         }
+
+        
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+    {
+            var itemPedidos = _repository.Listar();
+            return Ok(itemPedidos);
+    }
+
     }
 }
